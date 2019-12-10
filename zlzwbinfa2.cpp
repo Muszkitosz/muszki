@@ -61,7 +61,7 @@ if (gyoker!=NULL)
 {
 szabadit(gyoker->bal);
 szabadit(gyoker->jobb);
-free(gyoker);
+delete gyoker;
 }
 }
 

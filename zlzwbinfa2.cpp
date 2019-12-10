@@ -12,6 +12,7 @@ int agakszama(elem* aktualis);
 int szumaghossz(elem* aktualis, int hossz);
 double szumatlagelteres(elem* aktualis, double agatlag, int hossz);
 int magassag(elem* aktualis);
+void szabadit(elem* gyoker);
 
 int main()
 {	
@@ -23,12 +24,12 @@ int main()
 	vector<int>v;
 	char bit;
 	while (cin >> bit && (bit == '0' || bit == '1')) // csak 0,1 karaktereket fogad el, 								 // egyébként véget ér a program.
-	{
+	{	
 		v.push_back(bit - 48); // átalakítjuk számmá, mivel karakterként olvassuk be. 
 	}
 
 	for (int i = 0; i < v.size(); i++)
-	{
+	{	
 		fa_beszur(gyoker, aktualis, v[i]);  // létrehozzuk a fát
 	}
 
@@ -48,6 +49,20 @@ int main()
 	int famagassag = magassag(gyoker);
 	cout << "Fa magassaga gyokerelemmel: " << famagassag << '\n';
 	cout << "Fa magassaga gyokerelem nelkul: " << famagassag - 1 << '\n';
+	
+	szabadit(gyoker);
+	return 0;
+	
+}
+
+void szabadit(elem* gyoker)
+{
+if (gyoker!=NULL)
+{
+szabadit(gyoker->bal);
+szabadit(gyoker->jobb);
+free(gyoker);
+}
 }
 
 void fa_beszur(elem* gyoker, elem*& aktualis, char bit)
